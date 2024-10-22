@@ -120,7 +120,6 @@ namespace fyt::serial_driver
         receive_data.header.stamp = this->now() - rclcpp::Duration::from_seconds(timestamp_offset_);
         receive_data.header.frame_id = target_frame_;
         receive_data.detect_color = 1 ? receive_data.detect_color==0:receive_data.detect_color==1;
-        receive_data.mode = 1;
         // std::cout<<(int)receive_data.detect_color<<std::endl;
         // receive_data.pitch = -receive_data.pitch;
         serial_receive_data_pub_->publish(receive_data);
