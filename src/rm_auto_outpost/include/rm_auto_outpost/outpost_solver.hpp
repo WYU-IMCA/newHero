@@ -40,7 +40,9 @@ namespace fyt::auto_outpost
 
         ~OutpostSolver() = default;
 
-        rm_interfaces::msg::GimbalCmd solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg,std::shared_ptr<tf2_ros::Buffer> tf2_buffer,const double IMU_pitch,const double IMU_yaw);
+        rm_interfaces::msg::GimbalCmd solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg,const double IMU_pitch,const double IMU_yaw);
+
+        rm_interfaces::msg::GimbalCmd old_solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg,const double IMU_pitch,const double IMU_yaw);
 
         void Init();
 
@@ -52,13 +54,7 @@ namespace fyt::auto_outpost
         bool markLast;
         bool waitingToshut;
         int lostInShootZone;
-        int timeBias;
         double last_sleep_time;
-
-        cv::Mat rvec;
-        cv::Mat tvec;
-
-        cv::Mat R_T_;
 
         std::vector<ArmorBlob>armors_set;
 
@@ -80,9 +76,6 @@ namespace fyt::auto_outpost
                              double &pitch) const noexcept;
 
         bool AutoFireControl(const double TimeDetecteToNow);
-
-        // Eigen::Matrix3d camera_matrix1;
-        // Eigen::VectorXd distortion_coefficients1;
 
         cv::Mat camera_matrix;
         cv::Mat distortion_coefficients;

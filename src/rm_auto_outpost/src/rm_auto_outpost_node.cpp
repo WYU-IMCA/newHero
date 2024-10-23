@@ -84,7 +84,7 @@ void AutoOutpostNode::armorsCallback(const rm_interfaces::msg::Armors::SharedPtr
     }
   }
 
-    // Filter abnormal armors
+  // Filter abnormal armors
   // armors_msg->armors.erase(std::remove_if(armors_msg->armors.begin(),
   //                                         armors_msg->armors.end(),
   //                                         [this](const rm_interfaces::msg::Armor &armor) {
@@ -95,6 +95,8 @@ void AutoOutpostNode::armorsCallback(const rm_interfaces::msg::Armors::SharedPtr
   rm_interfaces::msg::GimbalCmd control_msg;
 
   control_msg = solver_->solve(armors_msg,tf2_buffer_,IMU_pitch,IMU_yaw);
+
+  // control_msg = solver->old_solve(armors_msg);
   
   gimbal_pub_->publish(control_msg);
 }
