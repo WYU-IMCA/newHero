@@ -106,6 +106,13 @@ namespace fyt::auto_outpost
         trajectory_compensator_->gravity = 9.8;
         trajectory_compensator_->resistance = 0.001;
 
+        camera_matrix = cv::Mat(3, 3, CV_64FC1, cv::Scalar::all(0));
+        camera_matrix.ptr<double>(0)[0] = 2064.16287;
+        camera_matrix.ptr<double>(0)[2] = 639.97973;
+        camera_matrix.ptr<double>(1)[1] = 2065.93895;
+        camera_matrix.ptr<double>(1)[2] = 495.08268;
+        camera_matrix.ptr<double>(2)[2] = 1.0f;
+
         outpost_interval = 800;
         have_detecte = false;
         get_center = false;

@@ -78,8 +78,6 @@ namespace fyt::auto_outpost
         bool AutoFireControl(const double TimeDetecteToNow);
 
         cv::Mat camera_matrix;
-        cv::Mat distortion_coefficients;
-        cv::Mat projection_matrix;
     };
 
 }
