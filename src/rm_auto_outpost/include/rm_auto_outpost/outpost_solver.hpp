@@ -42,7 +42,7 @@ namespace fyt::auto_outpost
 
         rm_interfaces::msg::GimbalCmd solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg,const double IMU_pitch,const double IMU_yaw);
 
-        rm_interfaces::msg::GimbalCmd old_solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg,const double IMU_pitch,const double IMU_yaw);
+        rm_interfaces::msg::GimbalCmd old_solve(const rm_interfaces::msg::Armors::SharedPtr armors_msg);
 
         void Init();
 

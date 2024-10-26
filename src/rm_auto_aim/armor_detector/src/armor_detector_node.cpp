@@ -214,14 +214,7 @@ namespace fyt::auto_aim
           }
 
           cv::Rodrigues(rvec, rotation_matrix);
-
-          armor_msg.rvecx = rvec.at<double>(0,0);
-          armor_msg.rvecy = rvec.at<double>(1,0);
-          armor_msg.rvecz = rvec.at<double>(2,0);
-
-          armor_msg.tvecx = tvec.at<double>(0,0);
-          armor_msg.tvecy = tvec.at<double>(1,0);
-          armor_msg.tvecz = tvec.at<double>(2,0);
+          
           armor.rmat = rotation_matrix.clone();
           armor.tvec = tvec.clone();
 
