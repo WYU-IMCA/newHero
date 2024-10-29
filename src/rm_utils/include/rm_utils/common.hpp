@@ -20,6 +20,12 @@
 
 namespace fyt {
 
+enum class EnemyColor{
+  RED = 0,
+  BLUE = 1,
+  WHITE = 2,
+};
+
 enum VisionMode {
   AUTO_AIM = 2,
   AUTO_OUTPOST = 1,

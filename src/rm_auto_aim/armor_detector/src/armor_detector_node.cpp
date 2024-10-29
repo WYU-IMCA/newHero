@@ -608,46 +608,28 @@ namespace fyt::auto_aim
 
     switch (mode)
     {
-
-    // case VisionMode::AIM:
-    case VisionMode::AUTO_OUTPOST:
-    {
-      use_numberclass_ = false;
-    }
-    case VisionMode::AUTO_AIM:
-    {
-      createImageSub();
-      break;
-    }
-
-    case VisionMode::BIG_RUNE:
-    {
-      img_sub_.reset();
-      if (record_is_open_)
+      // case VisionMode::AIM:
+      case VisionMode::AUTO_OUTPOST:
       {
-        auto recorder_pub = this->create_publisher<std_msgs::msg::String>("record_controller", 10);
-        std_msgs::msg::String control_msg;
-        control_msg.data = "stop";
-        recorder_pub->publish(control_msg);
-        record_is_open_ = false;
+        use_numberclass_ = false;
       }
-      break;
-    }
-    case VisionMode::SMALL_RUNE:
-      img_sub_.reset();
-      break;
-    default:
-    {
-      if (!record_is_open_)
+      case VisionMode::AUTO_AIM:
       {
-        record_is_open_ = true;
-        auto recorder_pub = this->create_publisher<std_msgs::msg::String>("record_controller", 10);
-        std_msgs::msg::String control_msg;
-        control_msg.data = "start";
-        recorder_pub->publish(control_msg);
+        createImageSub();
+        break;
       }
-      img_sub_.reset();
-    }
+      default:
+      {
+        if (!record_is_open_)
+        {
+          record_is_open_ = true;
+          auto recorder_pub = this->create_publisher<std_msgs::msg::String>("record_controller", 10);
+          std_msgs::msg::String control_msg;
+          control_msg.data = "start";
+          recorder_pub->publish(control_msg);
+        }
+        img_sub_.reset();
+      }
     }
 
     FYT_WARN("armor_detector", "Set mode to {}", mode_name);
