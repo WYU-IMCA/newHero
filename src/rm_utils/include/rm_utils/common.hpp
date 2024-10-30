@@ -29,6 +29,7 @@ enum class EnemyColor{
 enum VisionMode {
   AUTO_AIM = 2,
   AUTO_OUTPOST = 1,
+  AUTO_GREEN = 3,
 };
 
 inline std::string visionModeToString(VisionMode mode) {
@@ -37,6 +38,8 @@ inline std::string visionModeToString(VisionMode mode) {
       return "AUTO_AIM";
     case VisionMode::AUTO_OUTPOST:
       return "AUTO_OUTPOST";
+    case VisionMode::AUTO_GREEN:
+      return "AUTO_GREEN";
     default:
       return "UNKNOWN";
   }

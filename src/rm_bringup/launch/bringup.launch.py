@@ -109,6 +109,27 @@ def generate_launch_description():
         ros_arguments=[],
     )
 
+    # 绿灯识别
+    green_detector_node = Node(
+        package='green_detector',
+        executable='green_detector_node',
+        name='green_detector',
+        output='both',
+        emulate_tty=True,
+        parameters=[get_params('green_detector')],
+        ros_arguments=[],
+    )
+
+    # 绿灯解算
+    green_solver_node = Node(
+        package='green_solver',
+        executable='green_solver_node',
+        name='green_solver',
+        output='both',
+        emulate_tty=True,
+        ros_arguments=[],
+    )
+
     # 前哨站解算
     outpost_solver_node = Node(
         package='auto_outpost',
@@ -118,24 +139,6 @@ def generate_launch_description():
         emulate_tty=True,
         ros_arguments=[],
     )
-
-    # 打符
-    # rune_detector_node = ComposableNode(    
-    #     package='rune_detector',
-    #     plugin='imca::rune::RuneDetectorNode',
-    #     name='rune_detector',
-    #     parameters=[get_params('rune_detector')],
-    #     extra_arguments=[{'use_intra_process_comms': True}]
-    #     )
-    # rune_solver_node = Node(
-    #     package='rune_solver',
-    #     executable='rune_solver_node',
-    #     name='rune_solver',
-    #     output='both',
-    #     emulate_tty=True,
-    #     parameters=[get_params('rune_solver')],
-    #     arguments=['--ros-args',], 
-    #     )
 
     # 使用intra cmmunication提高图像的传输速度
     def get_camera_detector_container(*detector_nodes):
@@ -157,35 +160,38 @@ def generate_launch_description():
         )
 
     # 延迟启动
-    delay_serial_node = TimerAction(
+
+    delay_green_solver_node = TimerAction(
         period=1.5,
-        actions=[serial_driver_node],
+        actions=[green_solver_node],
     )
 
     delay_armor_solver_node = TimerAction(
         period=2.0,
         actions=[armor_solver_node],
     )
-    
-    # delay_rune_solver_node = TimerAction(
-    #     period=2.5,
-    #     actions=[rune_solver_node],
-    # )
+
+    delay_green_detector_node = TimerAction(
+        period=2.0,
+        actions=[green_detector_node],
+    )
 
     delay_outpost_solver_node = TimerAction(
         period=2.5,
         actions=[outpost_solver_node],
     )
+
+    delay_serial_node = TimerAction(
+        period=3.0,
+        actions=[serial_driver_node],
+    )
     
-    # if launch_params['rune']:
-    #     cam_detector_node = get_camera_detector_container(armor_detector_node, rune_detector_node)
-    # else:
     cam_detector_node = get_camera_detector_container(armor_detector_node)
 
     delay_cam_detector_node = TimerAction(
         period=2.0,
         actions=[cam_detector_node],
-        ) 
+    )
     
     push_namespace = PushRosNamespace(launch_params['namespace'])
     
@@ -195,9 +201,8 @@ def generate_launch_description():
         delay_serial_node,
         delay_cam_detector_node,
         delay_armor_solver_node,
-        delay_outpost_solver_node]
-    
-    # if launch_params['rune']:
-    #     launch_description_list.append(delay_rune_solver_node)
-    
+        delay_green_solver_node,
+        delay_outpost_solver_node,
+        delay_green_detector_node]
+
     return LaunchDescription(launch_description_list)

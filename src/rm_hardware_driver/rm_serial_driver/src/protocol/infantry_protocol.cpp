@@ -84,13 +84,11 @@ namespace imca::serial_driver::protocol
                                                                     rmw_qos_profile_services_default);
     auto client2 = node->create_client<rm_interfaces::srv::SetMode>("armor_solver/set_mode",
                                                                     rmw_qos_profile_services_default);  
-    // auto client3 = node->create_client<rm_interfaces::srv::SetMode>("rune_detector/set_mode",
-    //                                                                 rmw_qos_profile_services_default);
-    // auto client4 = node->create_client<rm_interfaces::srv::SetMode>("rune_solver/set_mode",
-    //                                                                 rmw_qos_profile_services_default);
     auto client3 = node->create_client<rm_interfaces::srv::SetMode>("outpost_solver/set_mode",
-                                                                    rmw_qos_profile_services_default);                                                   
-    return {client1, client2, client3}; //, client4, client5};
+                                                                    rmw_qos_profile_services_default);    
+    auto client4 = node->create_client<rm_interfaces::srv::SetMode>("green_detector/set_mode",
+                                                                    rmw_qos_profile_services_default);                                                
+    return {client1, client2, client3, client4}; //, client4, client5};
   }
 
   std::vector<rclcpp::AsyncParametersClient::SharedPtr> ProtocolInfantry::getParamClients(

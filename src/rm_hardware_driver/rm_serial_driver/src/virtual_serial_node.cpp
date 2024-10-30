@@ -45,8 +45,6 @@ public:
 
     this->declare_parameter("vision_mode", static_cast<int>(0));
 
-    has_rune_ = this->declare_parameter("has_rune", true);
-
     serial_receive_data_msg_.header.frame_id = "odom";
     serial_receive_data_msg_.bullet_speed = 25.0;
     transform_stamped_.header.frame_id = "odom";
@@ -65,17 +63,15 @@ public:
     set_mode_clients_.emplace(autoaim_set_mode_client_->get_service_name(),
                               autoaim_set_mode_client_);
 
+    auto autogreen_set_mode_client_ =
+      this->create_client<rm_interfaces::srv::SetMode>("green_detector/set_mode");
+    set_mode_clients_.emplace(autogreen_set_mode_client_->get_service_name(),
+                              autogreen_set_mode_client_);
+
     auto autooutpost_set_mode_client_ =
     this->create_client<rm_interfaces::srv::SetMode>("outpost_solver/set_mode");
     set_mode_clients_.emplace(autooutpost_set_mode_client_->get_service_name(),
                               autooutpost_set_mode_client_);
-
-    if (has_rune_) {
-      auto client1 = this->create_client<rm_interfaces::srv::SetMode>("rune_detector/set_mode");
-      set_mode_clients_.emplace(client1->get_service_name(), client1);
-      auto client2 = this->create_client<rm_interfaces::srv::SetMode>("rune_solver/set_mode");
-      set_mode_clients_.emplace(client2->get_service_name(), client2);
-    }
 
     timer_ = this->create_wall_timer(std::chrono::milliseconds(1), [this]() {
       serial_receive_data_msg_.header.stamp = this->now();

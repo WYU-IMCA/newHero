@@ -8,6 +8,8 @@
 |   ├── rm_auto_aim          自瞄模块
 |   │    ├──armor_detector   装甲板检测模块
 |   │    ├──armor_solver     装甲板追踪模块
+|   │    ├──green_detector   绿灯检测模块
+|   │    ├──green_solver     绿灯追踪模块
 |   │    └──rm_auto_aim
 |   ├── rm_auto_outpost      自动前哨站模块
 |   ├── rm_auto_record       录像模块

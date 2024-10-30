@@ -40,7 +40,7 @@ public:
     IMCA_REGISTER_LOGGER("camera_driver", "~/imca2024-log", INFO);
     IMCA_INFO("camera_driver", "Starting VideoPlayerNode!");
     // Get parameters
-    video_path = this->declare_parameter("path", "/home/zcf/Downloads/rune.avi");
+    video_path = this->declare_parameter("path", "/home/liang/new_hero/armor_red.mp4");
     std::string camera_info_url =
       this->declare_parameter("camera_info_url", "package://rm_bringup/config/camera_info.yaml");
     std::string frame_id = this->declare_parameter("frame_id", "camera_optical_frame");

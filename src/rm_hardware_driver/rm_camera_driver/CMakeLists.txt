@@ -47,12 +47,12 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 rclcpp_components_register_node(${PROJECT_NAME}
-  PLUGIN fyt::camera_driver::DahengCameraNode
+  PLUGIN imca::camera_driver::DahengCameraNode
   EXECUTABLE ${PROJECT_NAME}_node
 )
 
 rclcpp_components_register_node(${PROJECT_NAME}
-  PLUGIN fyt::camera_driver::VideoPlayerNode
+  PLUGIN imca::camera_driver::VideoPlayerNode
   EXECUTABLE video_player_node
 )
 

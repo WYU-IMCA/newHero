@@ -68,8 +68,6 @@ private:
 
   // get RPY from rvec in imu frame
   double rvecToRPY(const cv::Mat & rvec, int axis) const noexcept;
-
-  double rvecToRPY_Camera(const cv::Mat & rvec, int axis) const noexcept;
   
   // Select the best PnP solution according to the pitch angle
   void PnPSolutionsSelection(const Armor & armor, cv::Mat & rvec, cv::Mat &tvec) noexcept;

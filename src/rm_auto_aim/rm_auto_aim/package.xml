@@ -12,6 +12,8 @@
   <depend>rm_interfaces</depend>
   <depend>armor_detector</depend>
   <depend>armor_solver</depend>
+  <depend>green_detector</depend>
+  <depend>green_solver</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

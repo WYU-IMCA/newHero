@@ -164,7 +164,7 @@ namespace imca::auto_aim
     {
       rclcpp::Time target_time = img_msg->header.stamp;
       auto odom_to_gimbal = tf2_buffer_->lookupTransform(
-          odom_frame_, "camera_optical_frame", target_time, rclcpp::Duration::from_seconds(0.008));
+          odom_frame_, "camera_optical_frame", target_time, rclcpp::Duration::from_seconds(0.08));
       auto msg_q = odom_to_gimbal.transform.rotation;
       tf2::Quaternion tf_q;
       tf2::fromMsg(msg_q, tf_q);
@@ -457,21 +457,6 @@ namespace imca::auto_aim
     std::array<double, 3> rpy;
     tf2::Matrix3x3(tf_q).getRPY(rpy[0], rpy[1], rpy[2]);
     return rpy[axis];
-  }
-
-  double ArmorDetectorNode::rvecToRPY_Camera(const cv::Mat &rvec, int axis) const noexcept
-  {
-    cv::Mat m_R;
-    cv::Rodrigues(rvec, m_R);
-    // Eigen::Matrix3d eigen_R = utils::cvToEigen(R);
-    // Eigen::Quaterniond q(eigen_R);
-    double yaw = atan2(-m_R.at<double>(2, 0), sqrt(pow(m_R.at<double>(2, 1), 2) + pow(m_R.at<double>(2, 2), 2)));
-    return yaw;
-    // // Get armor yaw
-    // tf2::Quaternion tf_q(q.x(), q.y(), q.z(), q.w());
-    // std::array<double, 3> rpy;
-    // tf2::Matrix3x3(tf_q).getRPY(rpy[0], rpy[1], rpy[2]);
-    // return rpy[axis];
   }
 
   rcl_interfaces::msg::SetParametersResult ArmorDetectorNode::onSetParameters(
