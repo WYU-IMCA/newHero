@@ -1,6 +1,6 @@
 // Created by Chengfu Zou on 2023.10.26
 // Maintained by Chengfu Zou
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) IMCA Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 #include "rm_utils/assert.hpp"
 #include "rm_utils/common.hpp"
 
-namespace fyt::auto_aim {
+namespace imca::auto_aim {
 
 // Armor size, Unit: m
 constexpr double SMALL_ARMOR_WIDTH = 133.0 / 1000.0; // 135
@@ -70,7 +70,7 @@ struct Light : public cv::RotatedRect {
   Light() = default;
   explicit Light(const std::vector<cv::Point> &contour)
   : cv::RotatedRect(cv::minAreaRect(contour)), color(EnemyColor::WHITE) {
-    FYT_ASSERT(contour.size() > 0);
+    IMCA_ASSERT(contour.size() > 0);
 
     center = std::accumulate(
       contour.begin(),
@@ -168,5 +168,5 @@ struct Armor {
   std::string classfication_result;
 };
 
-}  // namespace fyt::auto_aim
+}  // namespace imca::auto_aim
 #endif  // ARMOR_DETECTOR_ARMOR_HPP_

@@ -1,5 +1,5 @@
 // Created by Chengfu Zou
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) imca Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 #include <string>
 
-namespace fyt {
+namespace imca {
 
 enum class EnemyColor{
   RED = 0,
@@ -42,5 +42,5 @@ inline std::string visionModeToString(VisionMode mode) {
   }
 }
 
-}  // namespace fyt
+}  // namespace imca
 #endif

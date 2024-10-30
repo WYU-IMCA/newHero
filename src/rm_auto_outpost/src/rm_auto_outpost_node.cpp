@@ -9,11 +9,11 @@
 #include <opencv2/core/types.hpp>
 #include <opencv2/imgproc.hpp>
 
-namespace fyt::auto_outpost{
+namespace imca::auto_outpost{
 AutoOutpostNode::AutoOutpostNode(const rclcpp::NodeOptions &options)
 : Node("auto_outpost", options){
-  FYT_REGISTER_LOGGER("outpost_solver", "~/fyt2024-log", INFO);
-  FYT_INFO("outpost_solver", "Starting OutpostSolverNode!");
+  IMCA_REGISTER_LOGGER("outpost_solver", "~/imca2024-log", INFO);
+  IMCA_INFO("outpost_solver", "Starting OutpostSolverNode!");
 
   // Subscriber with tf2 message_filter
   // tf2 relevant
@@ -79,7 +79,7 @@ void AutoOutpostNode::armorsCallback(const rm_interfaces::msg::Armors::SharedPtr
     try {
       armor.pose = tf2_buffer_->transform(ps, "odom").pose;
     } catch (const tf2::TransformException &ex) {
-      FYT_ERROR("outpost_solver", "Transform error: {}", ex.what());
+      IMCA_ERROR("outpost_solver", "Transform error: {}", ex.what());
       return;
     }
   }
@@ -126,7 +126,7 @@ void AutoOutpostNode::setModeCallback(
 }
 
 
-}// namespace fyt::outpost
+}// namespace imca::outpost
 
 #include "rclcpp_components/register_node_macro.hpp"
-RCLCPP_COMPONENTS_REGISTER_NODE(fyt::auto_outpost::AutoOutpostNode)
+RCLCPP_COMPONENTS_REGISTER_NODE(imca::auto_outpost::AutoOutpostNode)

@@ -32,7 +32,7 @@
 #include "rm_utils/logger/log.hpp"
 #include "rm_utils/math/utils.hpp"
 
-namespace fyt::auto_aim {
+namespace imca::auto_aim {
 G2O_USE_OPTIMIZATION_LIBRARY(dense)
 
 BaSolver::BaSolver(std::array<double, 9> &camera_matrix, std::vector<double> &dist_coeffs) {
@@ -141,4 +141,4 @@ bool BaSolver::solveBa(const std::deque<Armor> &armors, cv::Mat &rmat) noexcept 
   return true;
 }
 
-}  // namespace fyt::auto_aim
+}  // namespace imca::auto_aim

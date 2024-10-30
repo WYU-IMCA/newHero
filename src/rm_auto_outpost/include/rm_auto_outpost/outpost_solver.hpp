@@ -18,7 +18,7 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include <tf2_ros/buffer.h>
 
-namespace fyt::auto_outpost
+namespace imca::auto_outpost
 {
 
     class ArmorBlob{

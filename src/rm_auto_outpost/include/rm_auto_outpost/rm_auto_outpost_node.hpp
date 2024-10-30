@@ -34,7 +34,7 @@
 #include "rm_utils/logger/log.hpp"
 #include "rm_interfaces/msg/serial_receive_data.hpp"
 
-namespace fyt::auto_outpost
+namespace imca::auto_outpost
 {
     using tf2_filter = tf2_ros::MessageFilter<rm_interfaces::msg::Armors>;
     class AutoOutpostNode : public rclcpp::Node
@@ -69,4 +69,4 @@ namespace fyt::auto_outpost
         double IMU_yaw,IMU_pitch;
     };
 
-} // namespace fyt::outpost
+} // namespace imca::outpost

@@ -33,7 +33,7 @@
 #include "armor_detector/types.hpp"
 #include "rm_utils/common.hpp"
 
-namespace fyt::auto_aim {
+namespace imca::auto_aim {
 Detector::Detector(const int &bin_thres,
                    const EnemyColor &color,
                    const LightParams &l,
@@ -297,4 +297,4 @@ void Detector::drawResults(cv::Mat &img) const noexcept {
   }
 }
 
-}  // namespace fyt::auto_aim
+}  // namespace imca::auto_aim

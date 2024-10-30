@@ -2,7 +2,7 @@
 //
 // Additional modifications and features by Chengfu Zou, Labor. Licensed under Apache License 2.0.
 //
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) IMCA Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@
 // project
 #include "rm_utils/logger/log.hpp"
 
-namespace fyt::auto_aim
+namespace imca::auto_aim
 {
   Tracker::Tracker(double max_match_distance, double max_match_yaw_diff)
       : tracker_state(LOST), tracked_id(std::string("")), measurement(Eigen::VectorXd::Zero(4)), target_state(Eigen::VectorXd::Zero(9)), max_match_distance_(max_match_distance), max_match_yaw_diff_(max_match_yaw_diff) {}
@@ -57,7 +57,7 @@ namespace fyt::auto_aim
     }
 
     initEKF(tracked_armor);
-    FYT_INFO("armor_solver", "Init EKF!");
+    IMCA_INFO("armor_solver", "Init EKF!");
 
     tracked_id = tracked_armor.number;
     tracker_state = DETECTING;
@@ -148,7 +148,7 @@ namespace fyt::auto_aim
       else
       {
         // No matched armor found
-        FYT_WARN("armor_solver", "No matched armor found!");
+        IMCA_WARN("armor_solver", "No matched armor found!");
       }
     }
 
@@ -174,14 +174,14 @@ namespace fyt::auto_aim
         {
           detect_count_ = 0;
           tracker_state = TRACKING;
-          FYT_DEBUG("armor_solver", "Tracker state: TRACKING {}", tracked_id);
+          IMCA_DEBUG("armor_solver", "Tracker state: TRACKING {}", tracked_id);
         }
       }
       else
       {
         detect_count_ = 0;
         tracker_state = LOST;
-        FYT_DEBUG("armor_solver", "Tracker state: LOST {}", tracked_id);
+        IMCA_DEBUG("armor_solver", "Tracker state: LOST {}", tracked_id);
       }
     }
     else if (tracker_state == TRACKING)
@@ -190,7 +190,7 @@ namespace fyt::auto_aim
       {
         tracker_state = TEMP_LOST;
         lost_count_++;
-        FYT_DEBUG("armor_solver", "Tracker state: TEMP_LOST {}", tracked_id);
+        IMCA_DEBUG("armor_solver", "Tracker state: TEMP_LOST {}", tracked_id);
       }
     }
     else if (tracker_state == TEMP_LOST)
@@ -202,14 +202,14 @@ namespace fyt::auto_aim
         {
           lost_count_ = 0;
           tracker_state = LOST;
-          FYT_DEBUG("armor_solver", "Tracker state: LOST {}", tracked_id);
+          IMCA_DEBUG("armor_solver", "Tracker state: LOST {}", tracked_id);
         }
       }
       else
       {
         tracker_state = TRACKING;
         lost_count_ = 0;
-        FYT_DEBUG("armor_solver", "Tracker state: TRACKING {}", tracked_id);
+        IMCA_DEBUG("armor_solver", "Tracker state: TRACKING {}", tracked_id);
       }
     }
   }
@@ -247,7 +247,7 @@ namespace fyt::auto_aim
     //     target_state(4) = current_armor.pose.position.z;
     //     std::swap(target_state(8), another_r);
     //   }
-    //   FYT_DEBUG("armor_solver", "Armor Jump!");
+    //   IMCA_DEBUG("armor_solver", "Armor Jump!");
     // }
     double yaw = orientationToYaw(current_armor.pose.orientation);
     target_state(6) = yaw;
@@ -279,7 +279,7 @@ namespace fyt::auto_aim
       target_state(3) = 0;                  // vyc
       target_state(4) = p.z;                // xz
       target_state(5) = 0;                  // vza
-      FYT_WARN("armor_solver", "State wrong!");
+      IMCA_WARN("armor_solver", "State wrong!");
     }
 
     ekf.setState(target_state);
@@ -323,4 +323,4 @@ namespace fyt::auto_aim
     }
   }
 
-} // namespace fyt::auto_aim
+} // namespace imca::auto_aim

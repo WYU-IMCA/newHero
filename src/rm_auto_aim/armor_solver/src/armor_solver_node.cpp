@@ -2,7 +2,7 @@
 //
 // Additional modifications and features by Chengfu Zou, Labor. Licensed under Apache License 2.0.
 //
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) IMCA Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@
 
 #include "rm_utils/common.hpp"
 
-namespace fyt::auto_aim {
+namespace imca::auto_aim {
 ArmorSolverNode::ArmorSolverNode(const rclcpp::NodeOptions &options)
 : Node("armor_solver", options), solver_(nullptr) {
   // Register logger
-  FYT_REGISTER_LOGGER("armor_solver", "~/fyt2024-log", INFO);
-  FYT_INFO("armor_solver", "Starting ArmorSolverNode!");
+  IMCA_REGISTER_LOGGER("armor_solver", "~/imca2024-log", INFO);
+  IMCA_INFO("armor_solver", "Starting ArmorSolverNode!");
 
   debug_mode_ = this->declare_parameter("debug", true);
 
@@ -252,7 +252,7 @@ void ArmorSolverNode::armorsCallback(const rm_interfaces::msg::Armors::SharedPtr
     try {
       armor.pose = tf2_buffer_->transform(ps, target_frame_).pose;
     } catch (const tf2::TransformException &ex) {
-      FYT_ERROR("armor_solver", "Transform error: {}", ex.what());
+      IMCA_ERROR("armor_solver", "Transform error: {}", ex.what());
       return;
     }
   }
@@ -317,7 +317,7 @@ void ArmorSolverNode::armorsCallback(const rm_interfaces::msg::Armors::SharedPtr
     try {
       control_msg = solver_->solve(target_msg, this->now(), tf2_buffer_);
     } catch (...) {
-      FYT_ERROR("armor_solver", "Something went wrong in solver!");
+      IMCA_ERROR("armor_solver", "Something went wrong in solver!");
       control_msg.yaw_diff = 0;
       control_msg.pitch_diff = 0;
       control_msg.distance = -1;
@@ -456,7 +456,7 @@ void ArmorSolverNode::setModeCallback(
   VisionMode mode = static_cast<VisionMode>(request->mode);
   std::string mode_name = visionModeToString(mode);
   if (mode_name == "UNKNOWN") {
-    FYT_ERROR("armor_solver", "Invalid mode: {}", request->mode);
+    IMCA_ERROR("armor_solver", "Invalid mode: {}", request->mode);
     return;
   }
 
@@ -471,14 +471,14 @@ void ArmorSolverNode::setModeCallback(
     }
   }
 
-  FYT_WARN("armor_solver", "Set Mode: {}", visionModeToString(mode));
+  IMCA_WARN("armor_solver", "Set Mode: {}", visionModeToString(mode));
 }
 
-}  // namespace fyt::auto_aim
+}  // namespace imca::auto_aim
 
 #include "rclcpp_components/register_node_macro.hpp"
 
 // Register the component with class_loader.
 // This acts as a sort of entry point, allowing the component to be discoverable
 // when its library is being loaded into a running process.
-RCLCPP_COMPONENTS_REGISTER_NODE(fyt::auto_aim::ArmorSolverNode)
+RCLCPP_COMPONENTS_REGISTER_NODE(imca::auto_aim::ArmorSolverNode)

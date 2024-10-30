@@ -1,5 +1,5 @@
 // Created by Chengfu Zou
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) imca Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 #include <fmt/format.h>
 
-namespace fyt::logger {
+namespace imca::logger {
 class LoggerNotFoundError : public std::exception {
 public:
   explicit LoggerNotFoundError(std::string_view name) {
@@ -39,5 +39,5 @@ private:
   std::string_view msg;
 };
 
-}  // namespace fyt::logger
+}  // namespace imca::logger
 #endif // RM_UTILS_LOGGER_EXCEPTION_HPP_

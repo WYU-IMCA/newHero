@@ -35,7 +35,7 @@ def generate_launch_description():
     if launch_params['video_play']: 
         image_node  = ComposableNode(
             package='rm_camera_driver',
-            plugin='fyt::camera_driver::VideoPlayerNode',
+            plugin='imca::camera_driver::VideoPlayerNode',
             name='video_player',
             parameters=[get_params('video_player')],
             extra_arguments=[{'use_intra_process_comms': True}]
@@ -44,7 +44,7 @@ def generate_launch_description():
         if launch_params['camera_mode']=='daheng':
             image_node  = ComposableNode(
                 package='rm_camera_driver',
-                plugin='fyt::camera_driver::DahengCameraNode',
+                plugin='imca::camera_driver::DahengCameraNode',
                 name='camera_driver',
                 parameters=[get_params('camera_driver')],
                 extra_arguments=[{'use_intra_process_comms': True}]
@@ -92,7 +92,7 @@ def generate_launch_description():
     # 装甲板识别
     armor_detector_node = ComposableNode(
         package='armor_detector', 
-        plugin='fyt::auto_aim::ArmorDetectorNode',
+        plugin='imca::auto_aim::ArmorDetectorNode',
         name='armor_detector',
         parameters=[get_params('armor_detector')],
         extra_arguments=[{'use_intra_process_comms': True}]
@@ -122,7 +122,7 @@ def generate_launch_description():
     # 打符
     # rune_detector_node = ComposableNode(    
     #     package='rune_detector',
-    #     plugin='fyt::rune::RuneDetectorNode',
+    #     plugin='imca::rune::RuneDetectorNode',
     #     name='rune_detector',
     #     parameters=[get_params('rune_detector')],
     #     extra_arguments=[{'use_intra_process_comms': True}]

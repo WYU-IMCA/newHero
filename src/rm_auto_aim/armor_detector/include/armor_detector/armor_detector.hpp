@@ -34,7 +34,7 @@
 #include "rm_interfaces/msg/debug_armors.hpp"
 #include "rm_interfaces/msg/debug_lights.hpp"
 
-namespace fyt::auto_aim {
+namespace imca::auto_aim {
 class Detector {
 public:
   struct LightParams {
@@ -97,6 +97,6 @@ private:
   std::vector<Armor> armors_;
 };
 
-} // namespace fyt::auto_aim
+} // namespace imca::auto_aim
 
 #endif // ARMOR_DETECTOR_DETECTOR_HPP_

@@ -96,7 +96,7 @@
 #include "rm_utils/logger/log.hpp"
 #include <angles/angles.h>
 
-namespace fyt::auto_outpost
+namespace imca::auto_outpost
 {
     OutpostSolver::OutpostSolver()
     {

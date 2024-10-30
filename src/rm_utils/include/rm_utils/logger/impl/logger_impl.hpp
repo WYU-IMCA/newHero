@@ -1,5 +1,5 @@
 // Created by Chengfu Zou
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) imca Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 #include "rm_utils/logger/impl/writer.hpp"
 #include "rm_utils/logger/types.hpp"
 
-namespace fyt::logger {
+namespace imca::logger {
 
 namespace internal {
 class Logger {
@@ -101,5 +101,5 @@ private:
 };
 }  // namespace internal
 
-}  // namespace fyt::logger
+}  // namespace imca::logger
 #endif  // RM_UTILS_LOGGER_LOGGER_IMPL_HPP_ 

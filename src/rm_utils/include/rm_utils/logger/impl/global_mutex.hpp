@@ -1,5 +1,5 @@
 // Created by Chengfu Zou
-// Copyright (C) FYT Vision Group. All rights reserved.
+// Copyright (C) imca Vision Group. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 #include <mutex>
 #include <unordered_map>
 
-namespace fyt::logger {
+namespace imca::logger {
 
 static std::mutex g_mutex_;
 
@@ -40,5 +40,5 @@ private:
   GlobalMutex() = default;
   ~GlobalMutex() = default;
 };
-}  // namespace fyt::logger
+}  // namespace imca::logger
 #endif
